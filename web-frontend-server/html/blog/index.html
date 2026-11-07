@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMiniCloud Blog — Cloud, Docker & Đời sống</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/style.css">
+</head>
+<body data-accent="cloud">
+    <div class="aurora"></div>
+    <div class="cursor-glow"></div>
+    <div id="progress"></div>
+
+    <nav class="nav">
+        <a href="/" class="brand"><span class="brand-mark">☁</span> MyMiniCloud</a>
+        <ul class="nav-links">
+            <li><a href="/">Portal</a></li>
+            <li><a href="/blog/" class="active">Blog</a></li>
+            <li><a href="/student/">Student API</a></li>
+            <li><button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện">☀️</button></li>
+        </ul>
+    </nav>
+
+    <header class="hero container">
+        <span class="pill reveal"><span class="live-dot"></span> Đang chạy trên cụm Nginx Load Balancer</span>
+        <h1 class="reveal d1">Viết về <span class="gradient-text"><span id="typed" class="typed" data-words="Cloud Native|Docker & DevOps|Microservices|Du lịch & Đời sống"></span></span></h1>
+        <p class="lead reveal d2">Góc chia sẻ thực chiến về hạ tầng đám mây, container hóa và hành trình cân bằng giữa công nghệ với cuộc sống.</p>
+        <div class="hero-actions reveal d2">
+            <a href="#posts" class="btn btn-primary">Khám phá bài viết ↓</a>
+            <a href="/" class="btn btn-ghost">← Về Portal</a>
+        </div>
+        <div class="stats">
+            <div class="stat glass reveal"><b data-count="3">0</b><span>Bài viết</span></div>
+            <div class="stat glass reveal d1"><b data-count="16" data-suffix="'">0</b><span>Phút đọc</span></div>
+            <div class="stat glass reveal d2"><b data-count="12">0</b><span>Containers</span></div>
+            <div class="stat glass reveal d3"><b data-count="100" data-suffix="%">0</b><span>Open source</span></div>
+        </div>
+    </header>
+
+    <main class="container" id="posts">
+        <div class="toolbar reveal">
+            <div class="search">
+                <span class="ico">🔎</span>
+                <input id="search" type="search" placeholder="Tìm bài viết: docker, cloud, du lịch…" autocomplete="off">
+            </div>
+            <div class="chips">
+                <button class="chip active" data-cat="all">✨ Tất cả</button>
+                <button class="chip" data-cat="cloud">☁️ Cloud</button>
+                <button class="chip" data-cat="docker">🐳 Docker</button>
+                <button class="chip" data-cat="travel">🌿 Du lịch</button>
+            </div>
+        </div>
+
+        <div class="section-head reveal">
+            <h2>Bài viết mới nhất</h2>
+            <small>Cập nhật 06/11/2026</small>
+        </div>
+
+        <div class="layout">
+            <section class="posts">
+                <article class="post-card tilt reveal" data-category="cloud" data-title="Xu hướng Điện toán Đám mây Cloud Native hạ tầng AWS">
+                    <div class="thumb">
+                        <span class="emoji">☁️</span>
+                        <img data-fallback src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Cloud Architecture">
+                        <span class="tag">Cloud Native</span><span class="num">01</span>
+                    </div>
+                    <div class="post-body">
+                        <div>
+                            <div class="meta"><span>📅 06/11/2026</span><span>⏱ 5 phút đọc</span><span>👁 1.2k</span></div>
+                            <h3>Xu Hướng Điện Toán Đám Mây: Cuộc Cách Mạng Hạ Tầng Hiện Đại</h3>
+                            <p class="ex">Cloud Native đang thay thế kiến trúc máy chủ truyền thống nhờ khả năng tự động hóa, co giãn linh hoạt và tối ưu chi phí vận hành.</p>
+                        </div>
+                        <div class="post-foot">
+                            <div class="author"><span class="avatar">CA</span> Cloud Architect</div>
+                            <a href="/blog/blog1.html" class="read">Đọc ngay <span>→</span></a>
+                        </div>
+                    </div>
+                    <a href="/blog/blog1.html" aria-label="Đọc bài 1" style="position:absolute;inset:0;z-index:5"></a>
+                </article>
+
+                <article class="post-card tilt reveal d1" data-category="docker" data-title="Kinh nghiệm học Docker và Microservices thực chiến DevOps">
+                    <div class="thumb">
+                        <span class="emoji">🐳</span>
+                        <img data-fallback src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80" alt="Docker">
+                        <span class="tag">DevOps</span><span class="num">02</span>
+                    </div>
+                    <div class="post-body">
+                        <div>
+                            <div class="meta"><span>📅 05/11/2026</span><span>⏱ 7 phút đọc</span><span>👁 2.4k</span></div>
+                            <h3>Kinh Nghiệm Thực Chiến Làm Chủ Docker & Microservices</h3>
+                            <p class="ex">Từ Dockerfile tối ưu, user-defined network đến bài học triển khai 12 containers lên AWS EC2 chỉ với 1GB RAM.</p>
+                        </div>
+                        <div class="post-foot">
+                            <div class="author"><span class="avatar">DV</span> DevOps Engineer</div>
+                            <a href="/blog/blog2.html" class="read">Đọc ngay <span>→</span></a>
+                        </div>
+                    </div>
+                    <a href="/blog/blog2.html" aria-label="Đọc bài 2" style="position:absolute;inset:0;z-index:5"></a>
+                </article>
+
+                <article class="post-card tilt reveal d2" data-category="travel" data-title="Khám phá văn hóa Du lịch trải nghiệm cân bằng cuộc sống">
+                    <div class="thumb">
+                        <span class="emoji">🏔️</span>
+                        <img data-fallback src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Travel">
+                        <span class="tag">Du lịch</span><span class="num">03</span>
+                    </div>
+                    <div class="post-body">
+                        <div>
+                            <div class="meta"><span>📅 03/11/2026</span><span>⏱ 4 phút đọc</span><span>👁 980</span></div>
+                            <h3>Khám Phá Văn Hóa & Du Lịch: Bí Quyết Cân Bằng Của Dân Công Nghệ</h3>
+                            <p class="ex">Những chuyến đi giúp tái tạo năng lượng sáng tạo và mở rộng tư duy để giải quyết các bài toán kỹ thuật phức tạp.</p>
+                        </div>
+                        <div class="post-foot">
+                            <div class="author"><span class="avatar">TR</span> Wanderlust Tech</div>
+                            <a href="/blog/blog3.html" class="read">Đọc ngay <span>→</span></a>
+                        </div>
+                    </div>
+                    <a href="/blog/blog3.html" aria-label="Đọc bài 3" style="position:absolute;inset:0;z-index:5"></a>
+                </article>
+
+                <div class="empty">😶‍🌫️<h3 style="margin-top:8px">Không tìm thấy bài viết phù hợp</h3><p>Thử từ khóa khác nhé.</p></div>
+            </section>
+
+            <aside class="sidebar">
+                <div class="widget glass profile reveal">
+                    <div class="big-avatar"><span>☁️</span></div>
+                    <h5>MyMiniCloud Admin</h5>
+                    <div class="role">Cloud & DevOps Enthusiast</div>
+                    <p class="bio">Đam mê thiết kế hệ thống phân tán, container hóa đa dịch vụ và xây hạ tầng đám mây tin cậy.</p>
+                    <div class="tags">
+                        <span class="tag-pill">Docker</span><span class="tag-pill">Nginx</span><span class="tag-pill">Flask</span>
+                        <span class="tag-pill">Keycloak</span><span class="tag-pill">MinIO</span><span class="tag-pill">Grafana</span>
+                    </div>
+                </div>
+                <div class="widget glass reveal d1">
+                    <h4><span class="live-dot"></span> Trạng thái hạ tầng</h4>
+                    <div class="svc"><span>Web Cluster</span><b>Round-Robin</b></div>
+                    <div class="svc"><span>API Gateway</span><b>:8088</b></div>
+                    <div class="svc"><span>Internal DNS</span><b>cloud.local</b></div>
+                    <div class="svc"><span>Monitoring</span><b>Prometheus</b></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 <strong>MyMiniCloud</strong> — Xây dựng bằng Docker & Nginx Reverse Proxy.</p>
+            <p style="margin-top:8px"><a href="/">← Portal</a> · <a href="#">Lên đầu trang ↑</a></p>
+        </div>
+    </footer>
+
+    <button class="icon-btn to-top" id="toTop" aria-label="Lên đầu trang">↑</button>
+    <script src="/blog/assets/app.js"></script>
+</body>
+</html>

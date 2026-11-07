@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xu Hướng Điện Toán Đám Mây — MyMiniCloud Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/style.css">
+</head>
+<body data-accent="cloud">
+    <div class="aurora"></div>
+    <div class="cursor-glow"></div>
+    <div id="progress"></div>
+
+    <nav class="nav">
+        <a href="/" class="brand"><span class="brand-mark">☁</span> MyMiniCloud</a>
+        <ul class="nav-links">
+            <li><a href="/">Portal</a></li>
+            <li><a href="/blog/" class="active">Blog</a></li>
+            <li><a href="/blog/">← Danh mục</a></li>
+            <li><button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện">☀️</button></li>
+        </ul>
+    </nav>
+
+    <header class="article-hero container">
+        <div class="crumbs reveal"><a href="/">Trang chủ</a> / <a href="/blog/">Blog</a> / Cloud Native</div>
+        <span class="pill reveal d1">☁️ Cloud Native Architecture</span>
+        <h1 class="reveal d1"><span class="gradient-text">Xu Hướng Điện Toán Đám Mây:</span> Cuộc Cách Mạng Hạ Tầng Hiện Đại</h1>
+        <div class="byline glass reveal d2">
+            <span class="avatar" style="--c1:#6366f1;--c2:#22d3ee">CA</span>
+            <span><strong>Cloud Architect Team</strong>Chuyên gia hạ tầng điện toán đám mây</span>
+            <span>📅 06/11/2026</span><span>⏱ 5 phút đọc</span>
+        </div>
+        <figure class="cover reveal d2">
+            <img data-fallback src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80" alt="Cloud Data Center">
+            <figcaption>Kiến trúc Cloud Native phân tán, kết nối toàn cầu</figcaption>
+        </figure>
+    </header>
+
+    <main class="container article-layout">
+        <aside class="toc glass"><h4>Nội dung</h4><div id="tocList"></div></aside>
+
+        <article class="prose">
+            <p>Trong kỷ nguyên số, hạ tầng máy chủ đặt tại phòng máy (On-Premises) đang nhường chỗ cho các dịch vụ đám mây công cộng và lai. Những nhà cung cấp như <strong>Amazon Web Services</strong>, <strong>Google Cloud</strong> và <strong>Microsoft Azure</strong> đã định hình lại cách doanh nghiệp phát triển, triển khai và vận hành phần mềm.</p>
+
+            <div class="callout reveal">
+                <strong>💡 Điểm cốt lõi cần ghi nhớ</strong>
+                Điện toán đám mây không chỉ là thuê máy chủ, mà là tư duy kiến trúc hướng dịch vụ: tự động mở rộng (Auto-scaling) và trả tiền chính xác theo mức sử dụng (Pay-as-you-go).
+            </div>
+
+            <h2>1. Các khối hạ tầng cốt lõi trên Cloud</h2>
+            <p>Hệ thống <strong>MyMiniCloud</strong> mô phỏng chính xác các thành phần tương đương trên AWS:</p>
+            <div class="table-wrap reveal">
+                <table>
+                    <thead><tr><th>MyMiniCloud</th><th>Công nghệ</th><th>AWS tương đương</th><th>Vai trò</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>API Gateway</strong></td><td>Nginx ALB</td><td>Application Load Balancer</td><td>Cổng vào duy nhất, cân bằng tải</td></tr>
+                        <tr><td><strong>Web Cluster</strong></td><td>Nginx Static</td><td>S3 Static Web / CloudFront</td><td>Phục vụ giao diện tĩnh</td></tr>
+                        <tr><td><strong>Backend API</strong></td><td>Python Flask</td><td>ECS Fargate / Lambda</td><td>Xử lý nghiệp vụ, trả JSON</td></tr>
+                        <tr><td><strong>Authentication</strong></td><td>Keycloak OIDC</td><td>Cognito User Pools</td><td>Quản lý user, cấp JWT</td></tr>
+                        <tr><td><strong>Object Storage</strong></td><td>MinIO</td><td>Amazon S3</td><td>Lưu ảnh, tài liệu</td></tr>
+                        <tr><td><strong>Internal DNS</strong></td><td>ISC BIND9</td><td>Route 53 Private Zone</td><td>Phân giải tên miền .cloud.local</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2. Từ Monolith đến Microservices</h2>
+            <p>Trước đây một lỗi nhỏ ở module thanh toán có thể đánh sập toàn bộ hệ thống. Với Microservices cách ly trong từng container, sự cố được khoanh vùng: container Web hay Backend lỗi sẽ tự khởi động lại (Restart Policy) mà không ảnh hưởng Database hay Gateway.</p>
+            <div class="quote reveal">Hệ sinh thái Cloud Native đang dần thay thế toàn bộ kiến trúc máy chủ truyền thống nhờ khả năng tự động hóa và co giãn linh hoạt.</div>
+
+            <h2>3. Lợi ích của container hóa</h2>
+            <p>Nhờ Docker, quá trình đi từ máy Local đến máy chủ đám mây (AWS EC2) diễn ra hoàn toàn đồng nhất. Kỹ sư không còn phải nói câu kinh điển: <em>“Nó chạy được trên máy của tôi mà!”</em>.</p>
+        </article>
+    </main>
+
+    <div class="container-narrow">
+        <div class="reactions glass reveal">
+            <button class="like" id="likeBtn">❤️ Thích bài viết · <span id="likeCount">42</span></button>
+            <div class="share">Chia sẻ <button class="icon-btn" id="shareBtn" aria-label="Sao chép liên kết">🔗</button></div>
+        </div>
+
+        <div class="post-nav">
+            <a href="/blog/" class="nav-card reveal"><small>← Danh mục</small><b>Tất cả bài viết</b></a>
+            <a href="/blog/blog2.html" class="nav-card next reveal d1"><small>Bài tiếp theo →</small><b>Kinh Nghiệm Làm Chủ Docker & Microservices</b></a>
+        </div>
+
+        <section class="comments glass reveal">
+            <h3>💬 Thảo luận</h3>
+            <textarea id="commentBox" rows="3" placeholder="Chia sẻ góc nhìn của bạn về điện toán đám mây…"></textarea>
+            <button class="btn btn-primary" id="sendComment">Gửi bình luận</button>
+            <div id="commentList" style="margin-top:24px">
+                <div class="comment"><div class="avatar">N</div><div><strong>Nguyễn Văn An</strong><small>10 phút trước</small><p>Bảng đối chiếu MyMiniCloud với AWS rất trực quan, dễ hình dung cho người mới học cloud!</p></div></div>
+                <div class="comment"><div class="avatar">T</div><div><strong>Trần Thị Mai</strong><small>1 giờ trước</small><p>Mô hình 9 server trên Docker network này chạy rất mượt trên EC2 t3.micro.</p></div></div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer"><div class="container"><p>© 2026 <strong>MyMiniCloud</strong> — <a href="/blog/">← Quay lại danh mục Blog</a></p></div></footer>
+    <button class="icon-btn to-top" id="toTop" aria-label="Lên đầu trang">↑</button>
+    <script src="/blog/assets/app.js"></script>
+</body>
+</html>

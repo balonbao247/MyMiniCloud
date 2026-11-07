@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMiniCloud - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/style.css">
+    <style>
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 4.4rem);
+            background: linear-gradient(120deg, var(--a1), var(--a2) 55%, var(--a3));
+            background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s linear infinite;
+        }
+    </style>
+</head>
+<body data-accent="cloud">
+    <div class="aurora"></div>
+    <div class="cursor-glow"></div>
+
+    <nav class="nav">
+        <a href="/" class="brand"><span class="brand-mark">☁</span> MyMiniCloud</a>
+        <ul class="nav-links">
+            <li><a href="/" class="active">Portal</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/student/">Student API</a></li>
+            <li><button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện">☀️</button></li>
+        </ul>
+    </nav>
+
+    <header class="hero container">
+        <span class="pill reveal"><span class="live-dot"></span> Web Server 1 · Nginx Load Balancer đang hoạt động</span>
+        <div class="reveal d1"><h1>MyMiniCloud - Web Server 1</h1></div>
+        <p class="lead reveal d2">Chào mừng đến với hệ thống máy chủ tĩnh MyMiniCloud — nền tảng mô phỏng điện toán đám mây thu nhỏ với 12 container chạy cùng lúc.</p>
+        <div class="hero-actions reveal d2">
+            <a href="/blog/" class="btn btn-primary">Ghé thăm Blog Cá Nhân →</a>
+            <a href="/api/hello" class="btn btn-ghost">⚡ Thử Backend API</a>
+        </div>
+        <div class="stats">
+            <div class="stat glass reveal"><b data-count="9">0</b><span>Loại server</span></div>
+            <div class="stat glass reveal d1"><b data-count="12">0</b><span>Containers</span></div>
+            <div class="stat glass reveal d2"><b data-count="10">0</b><span>Mở rộng</span></div>
+            <div class="stat glass reveal d3"><b data-count="1">0</b><span>Cổng vào</span></div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="section-head reveal"><h2>Dịch vụ trong hệ thống</h2><small>Truy cập nhanh qua API Gateway</small></div>
+        <div class="portal-grid">
+            <a href="/blog/" class="svc-card tilt reveal" style="--k:#6366f1">
+                <div class="ic">📝</div><h3>Blog Cá Nhân</h3>
+                <p>3 bài viết về điện toán đám mây, Docker & du lịch với giao diện dark glass hiện đại.</p>
+                <span class="go">Mở Blog →</span>
+            </a>
+            <a href="/student/" class="svc-card tilt reveal d1" style="--k:#10b981">
+                <div class="ic">🎓</div><h3>Student REST API</h3>
+                <p>Danh sách 5 sinh viên dạng JSON, xử lý bởi Flask Backend qua Gateway.</p>
+                <span class="go">Gọi /student/ →</span>
+            </a>
+            <a href="/api/hello" class="svc-card tilt reveal d2" style="--k:#a855f7">
+                <div class="ic">⚡</div><h3>Backend Core API</h3>
+                <p>Kiểm tra sức khỏe và độ trễ phản hồi của Application Server.</p>
+                <span class="go">Gọi /api/hello →</span>
+            </a>
+            <a href="/auth/" class="svc-card tilt reveal d3" style="--k:#f59e0b">
+                <div class="ic">🔐</div><h3>Keycloak Identity</h3>
+                <p>Quản trị định danh, cấp phát token OIDC cho người dùng và client.</p>
+                <span class="go">Mở /auth/ →</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer"><div class="container"><p>© 2026 <strong>MyMiniCloud</strong> — Hệ thống máy chủ phân tán đa dịch vụ.</p></div></footer>
+    <script src="/blog/assets/app.js"></script>
+</body>
+</html>

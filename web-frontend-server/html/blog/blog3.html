@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Du Lịch & Trải Nghiệm — MyMiniCloud Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/blog/assets/style.css">
+</head>
+<body data-accent="travel">
+    <div class="aurora"></div>
+    <div class="cursor-glow"></div>
+    <div id="progress"></div>
+
+    <nav class="nav">
+        <a href="/" class="brand"><span class="brand-mark">🌿</span> MyMiniCloud</a>
+        <ul class="nav-links">
+            <li><a href="/">Portal</a></li>
+            <li><a href="/blog/" class="active">Blog</a></li>
+            <li><a href="/blog/">← Danh mục</a></li>
+            <li><button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện">☀️</button></li>
+        </ul>
+    </nav>
+
+    <header class="article-hero container">
+        <div class="crumbs reveal"><a href="/">Trang chủ</a> / <a href="/blog/">Blog</a> / Du lịch</div>
+        <span class="pill reveal d1">🌿 Work-Life Balance</span>
+        <h1 class="reveal d1"><span class="gradient-text">Khám Phá Văn Hóa & Du Lịch:</span> Bí Quyết Cân Bằng Của Dân Công Nghệ</h1>
+        <div class="byline glass reveal d2">
+            <span class="avatar" style="--c1:#10b981;--c2:#fbbf24">TR</span>
+            <span><strong>Wanderlust Tech Explorer</strong>Kỹ sư & người đam mê xê dịch</span>
+            <span>📅 03/11/2026</span><span>⏱ 4 phút đọc</span>
+        </div>
+        <figure class="cover reveal d2">
+            <img data-fallback src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80" alt="Phong cảnh thiên nhiên">
+            <figcaption>Hòa mình vào thiên nhiên để tìm lại sự tĩnh lặng và cảm hứng</figcaption>
+        </figure>
+    </header>
+
+    <main class="container article-layout">
+        <aside class="toc glass"><h4>Nội dung</h4><div id="tocList"></div></aside>
+
+        <article class="prose">
+            <p>Hằng ngày đối mặt với hàng nghìn dòng code, những file YAML phức tạp và hàng chục container cần giám sát, kỹ sư rất dễ rơi vào kiệt sức. Một chuyến đi xa không chỉ là kỳ nghỉ mà là cơ hội thiết lập lại tâm trí.</p>
+
+            <div class="callout reveal">
+                <strong>🌿 Chân lý trải nghiệm</strong>
+                Cân bằng giữa kỹ thuật chuyên sâu và những chuyến đi thực tế giúp mở rộng tư duy, mang lại góc nhìn đa chiều cho cả những kiến trúc phần mềm phức tạp nhất.
+            </div>
+
+            <h2>1. Góc nhìn mới khi rời màn hình</h2>
+            <p>Khi leo lên đỉnh núi hay dạo giữa thung lũng xanh, tâm trí tạm gác lại những cảnh báo từ Prometheus hay lỗi cú pháp Nginx. Thay vào đó là sự kết nối thật sự với thiên nhiên, tiếng suối chảy và nụ cười của người dân bản địa.</p>
+
+            <div class="gallery">
+                <figure class="reveal"><img data-fallback src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Núi"><figcaption>🏔️ Đỉnh núi lúc bình minh</figcaption></figure>
+                <figure class="reveal d1"><img data-fallback src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Rừng sương"><figcaption>🌲 Rừng thông trong sương</figcaption></figure>
+            </div>
+
+            <h2>2. Ba thói quen giữ năng lượng tích cực</h2>
+            <ul class="checks">
+                <li class="reveal"><span class="ok">1</span><div><strong>Digital Detox cuối tuần:</strong> dành ít nhất 1 ngày không mở laptop, hạn chế mạng xã hội.</div></li>
+                <li class="reveal d1"><span class="ok">2</span><div><strong>Mỗi quý một chuyến đi:</strong> cắm trại ngoại ô hay xuyên Việt — đổi môi trường kích thích sáng tạo mạnh mẽ.</div></li>
+                <li class="reveal d2"><span class="ok">3</span><div><strong>Thể thao đều đặn:</strong> chạy bộ, bơi, leo núi rèn tính kiên nhẫn — đức tính quan trọng của lập trình viên.</div></li>
+            </ul>
+
+            <div class="quote reveal">Hành trình vạn dặm bắt đầu từ một bước chân, và một hệ thống Cloud vĩ đại bắt đầu từ những dòng Dockerfile đầu tiên.</div>
+        </article>
+    </main>
+
+    <div class="container-narrow">
+        <div class="reactions glass reveal">
+            <button class="like" id="likeBtn">🌿 Truyền cảm hứng · <span id="likeCount">73</span></button>
+            <div class="share">Chia sẻ <button class="icon-btn" id="shareBtn" aria-label="Sao chép liên kết">🔗</button></div>
+        </div>
+
+        <div class="post-nav">
+            <a href="/blog/blog2.html" class="nav-card reveal"><small>← Bài trước</small><b>Làm Chủ Docker & Microservices</b></a>
+            <a href="/blog/" class="nav-card next reveal d1"><small>Về trang Blog →</small><b>Danh mục tất cả bài viết</b></a>
+        </div>
+
+        <section class="comments glass reveal">
+            <h3>💬 Góc chia sẻ</h3>
+            <textarea id="commentBox" rows="3" placeholder="Địa điểm yêu thích hoặc cách bạn giải tỏa căng thẳng…"></textarea>
+            <button class="btn btn-primary" id="sendComment">Gửi chia sẻ</button>
+            <div id="commentList" style="margin-top:24px">
+                <div class="comment"><div class="avatar">P</div><div><strong>Phạm Đức Thắng</strong><small>3 giờ trước</small><p>Ảnh đẹp và bài viết đầy năng lượng! Dân IT rất cần những chia sẻ như vậy.</p></div></div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer"><div class="container"><p>© 2026 <strong>MyMiniCloud</strong> — <a href="/blog/">← Quay lại danh mục Blog</a></p></div></footer>
+    <button class="icon-btn to-top" id="toTop" aria-label="Lên đầu trang">↑</button>
+    <script src="/blog/assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Secrets & SSH Keys
+*.pem
+*.key
+*.id_rsa
+*.id_ed25519
+
+# MinIO internal system state
+object-storage-server/data/.minio.sys/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Environment files
+.env
+.env.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
