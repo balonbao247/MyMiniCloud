@@ -29,7 +29,7 @@ Write-Host "[5] INTERNAL DNS (BIND9 ZONE CLOUD.LOCAL):" -ForegroundColor Yellow
 docker exec internal-dns-server dig '@127.0.0.1' app-backend.cloud.local minio.cloud.local keycloak.cloud.local +short
 
 Write-Host "`n[6] OBJECT STORAGE (MINIO BUCKETS & FILES):" -ForegroundColor Yellow
-docker exec object-storage-server ls -l /data/profile-pics /data/documents
+docker exec object-storage-server mc ls local/profile-pics local/documents
 
 Write-Host "`n[7] LOAD BALANCER ROUND ROBIN (NGINX PROXY):" -ForegroundColor Yellow
 1..4 | ForEach-Object {
@@ -44,7 +44,7 @@ Write-Host "`n[7] LOAD BALANCER ROUND ROBIN (NGINX PROXY):" -ForegroundColor Yel
 
 Write-Host "`n[8] PROMETHEUS TARGETS & GRAFANA DASHBOARDS:" -ForegroundColor Yellow
 Write-Host "Prometheus Targets:" -ForegroundColor Gray
-(curl.exe -s http://localhost:9090/api/v1/targets | ConvertFrom-Json).data.activeTargets | Select-Object health, scrapeUrl | Format-Table -AutoSize
+(curl.exe -s http://localhost:9090/api/v1/targets | ConvertFrom-Json).data.activeTargets | Select-Object scrapePool, health, scrapeUrl | Format-Table -AutoSize
 Write-Host "Grafana Dashboards:" -ForegroundColor Gray
 (curl.exe -s -u admin:admin http://localhost:3000/api/search | ConvertFrom-Json) | Select-Object id, title, uri | Format-Table -AutoSize
 
