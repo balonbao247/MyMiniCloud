@@ -64,3 +64,4 @@ docker compose ps
 8. ✅ **Grafana:** Dashboard System Health với các chỉ số CPU, RAM, Network Traffic.
 9. ✅ **Gateway:** Định tuyến route `/student/` thông qua Reverse Proxy.
 10. ✅ **Load Balancing:** Thuật toán Round Robin luân phiên giữa Web 1 và Web 2.
+
