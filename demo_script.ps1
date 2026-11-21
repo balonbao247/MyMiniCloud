@@ -13,10 +13,21 @@ Write-Host "=================================================" -ForegroundColor 
 Write-Host "`n[1] DANH SACH 12 CONTAINER HOAT DONG:" -ForegroundColor Yellow
 docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}"
 
-Write-Host "`n[2] KIEM TRA THONG MANG (PING CLOUD-NET):" -ForegroundColor Yellow
-docker exec api-gateway-proxy-server ping -c 2 web-frontend-server | Select-String "packet loss"
-docker exec api-gateway-proxy-server ping -c 2 application-backend-server | Select-String "packet loss"
-docker exec api-gateway-proxy-server ping -c 2 relational-database-server | Select-String "packet loss"
+Write-Host "`n[2] KIEM TRA THONG MANG (PING TOAN BO CLOUD-NET):" -ForegroundColor Yellow
+$pingTargets = @(
+    "application-backend-server",
+    "relational-database-server",
+    "authentication-identity-server",
+    "object-storage-server",
+    "internal-dns-server",
+    "monitoring-prometheus-server",
+    "monitoring-grafana-dashboard-server",
+    "api-gateway-proxy-server"
+)
+foreach ($t in $pingTargets) {
+    Write-Host "-> Ping $t : " -NoNewline -ForegroundColor Gray
+    docker exec web-frontend-server ping -c 1 $t | Select-String "packet loss"
+}
 
 Write-Host "`n[3] WEB BLOG & API GATEWAY ROUTE:" -ForegroundColor Yellow
 curl.exe -s -I http://localhost:8080/blog/ | Select-String "HTTP"
