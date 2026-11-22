@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keycloak Token Test</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f1117; color: #e2e8f0;
+    font-family: system-ui, sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    padding: 40px 16px;
+  }
+  h1 { font-size: 1.4rem; color: #818cf8; margin-bottom: 6px; }
+  .sub { color: #64748b; font-size: .85rem; margin-bottom: 32px; }
+
+  .box {
+    background: #1a1d27; border: 1px solid #2d3146;
+    border-radius: 12px; padding: 28px; width: 100%; max-width: 520px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  label { font-size: .78rem; color: #94a3b8; display: block; margin-bottom: 4px; }
+  input {
+    width: 100%; padding: 10px 14px;
+    background: #0f1117; border: 1px solid #2d3146;
+    border-radius: 8px; color: #e2e8f0; font-size: .9rem; outline: none;
+    transition: border .15s;
+  }
+  input:focus { border-color: #6366f1; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  button {
+    width: 100%; padding: 12px; border: none; border-radius: 8px;
+    font-size: .95rem; font-weight: 700; cursor: pointer;
+    background: #6366f1; color: #fff; transition: background .15s;
+  }
+  button:hover { background: #4f46e5; }
+  button:disabled { background: #374151; color: #64748b; cursor: not-allowed; }
+
+  /* Result area */
+  .result { display: none; flex-direction: column; gap: 12px; }
+  .result.show { display: flex; }
+
+  .status-ok  { color: #22c55e; font-weight: 700; font-size: .9rem; }
+  .status-err { color: #ef4444; font-weight: 700; font-size: .9rem; }
+
+  .info-grid {
+    display: grid; grid-template-columns: auto 1fr; gap: 6px 16px;
+    font-size: .82rem;
+  }
+  .info-grid .key { color: #64748b; white-space: nowrap; }
+  .info-grid .val { color: #c7d2fe; word-break: break-all; }
+  .val.ok  { color: #22c55e; }
+  .val.err { color: #ef4444; }
+
+  .token-box {
+    background: #0f1117; border: 1px solid #2d3146; border-radius: 8px;
+    padding: 12px; font-family: monospace; font-size: .72rem;
+    color: #818cf8; word-break: break-all; max-height: 110px;
+    overflow: auto; line-height: 1.5; cursor: pointer; position: relative;
+  }
+  .copy-hint { font-size: .7rem; color: #64748b; text-align: right; margin-top: 2px; }
+
+  .divider { border: none; border-top: 1px solid #2d3146; }
+  .section-title { font-size: .78rem; color: #64748b; text-transform: uppercase;
+    letter-spacing: .05em; }
+
+  .nav { margin-bottom: 24px; display: flex; gap: 16px; }
+  .nav a { color: #64748b; font-size: .82rem; text-decoration: none; }
+  .nav a:hover { color: #818cf8; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/">← Home</a>
+  <a href="/students.html">Students</a>
+  <a href="/phpmyadmin/" target="_blank">phpMyAdmin</a>
+</nav>
+
+<h1>🔐 Keycloak Token Test</h1>
+<p class="sub">Nhập tài khoản để lấy JWT access token từ Keycloak</p>
+
+<div class="box">
+
+  <!-- Config -->
+  <div>
+    <label>Keycloak URL</label>
+    <input id="url" value="http://13.251.88.65/auth">
+  </div>
+  <div class="row">
+    <div>
+      <label>Realm</label>
+      <input id="realm" value="realm_52300009">
+    </div>
+    <div>
+      <label>Client ID</label>
+      <input id="client" value="account">
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Credentials -->
+  <div class="row">
+    <div>
+      <label>Username</label>
+      <input id="user" value="admin" autocomplete="username">
+    </div>
+    <div>
+      <label>Password</label>
+      <input id="pass" type="password" value="admin" autocomplete="current-password">
+    </div>
+  </div>
+
+  <button id="btn" onclick="getToken()">🎫 Lấy Token</button>
+
+  <!-- Result -->
+  <div class="result" id="result">
+    <hr class="divider">
+    <span class="section-title">Kết quả</span>
+    <div id="status-line"></div>
+    <div class="info-grid" id="info-grid"></div>
+
+    <div id="token-section" style="display:none">
+      <span class="section-title">Access Token (click để copy)</span>
+      <div class="token-box" id="token-box" onclick="copyToken()"></div>
+      <div class="copy-hint" id="copy-hint">Click vào token để copy</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let currentToken = '';
+
+async function getToken() {
+  const btn = document.getElementById('btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Đang lấy token...';
+
+  const url    = document.getElementById('url').value.trim();
+  const realm  = document.getElementById('realm').value.trim();
+  const client = document.getElementById('client').value.trim();
+  const user   = document.getElementById('user').value.trim();
+  const pass   = document.getElementById('pass').value;
+
+  const tokenUrl = `${url}/realms/${realm}/protocol/openid-connect/token`;
+
+  const body = new URLSearchParams({
+    grant_type: 'password',
+    client_id: client,
+    username: user,
+    password: pass,
+    scope: 'openid profile email',
+  });
+
+  const result = document.getElementById('result');
+  const statusLine = document.getElementById('status-line');
+  const infoGrid = document.getElementById('info-grid');
+  const tokenSection = document.getElementById('token-section');
+  const tokenBox = document.getElementById('token-box');
+  result.classList.add('show');
+
+  try {
+    const r = await fetch(tokenUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    });
+    const d = await r.json();
+
+    if (!r.ok) {
+      statusLine.innerHTML = `<span class="status-err">✗ Thất bại (${r.status})</span>`;
+      infoGrid.innerHTML = `
+        <span class="key">Lỗi</span><span class="val err">${d.error || 'unknown'}</span>
+        <span class="key">Mô tả</span><span class="val err">${d.error_description || JSON.stringify(d)}</span>
+        <span class="key">URL</span><span class="val">${tokenUrl}</span>
+      `;
+      tokenSection.style.display = 'none';
+    } else {
+      currentToken = d.access_token;
+      const claims = decodeJWT(d.access_token);
+      const exp = claims ? new Date(claims.exp * 1000).toLocaleString('vi-VN') : '?';
+      const username = claims ? (claims.preferred_username || claims.sub) : user;
+      const roles = claims?.realm_access?.roles?.join(', ') || '—';
+      const expires_in = d.expires_in ? `${d.expires_in}s` : '?';
+
+      statusLine.innerHTML = `<span class="status-ok">✓ Lấy token thành công!</span>`;
+      infoGrid.innerHTML = `
+        <span class="key">Username</span><span class="val ok">${username}</span>
+        <span class="key">Hết hạn lúc</span><span class="val ok">${exp} (${expires_in})</span>
+        <span class="key">Roles</span><span class="val">${roles}</span>
+        <span class="key">Token type</span><span class="val">${d.token_type || 'Bearer'}</span>
+        <span class="key">Refresh token</span><span class="val">${d.refresh_token ? '✓ Có' : '✗ Không'}</span>
+      `;
+      tokenBox.textContent = d.access_token;
+      tokenSection.style.display = 'block';
+    }
+  } catch (e) {
+    statusLine.innerHTML = `<span class="status-err">✗ Không kết nối được Keycloak</span>`;
+    infoGrid.innerHTML = `
+      <span class="key">Lỗi</span><span class="val err">${e.message}</span>
+      <span class="key">URL</span><span class="val">${tokenUrl}</span>
+      <span class="key">Gợi ý</span><span class="val">Kiểm tra Keycloak URL, Realm, hoặc CORS</span>
+    `;
+    tokenSection.style.display = 'none';
+  }
+
+  btn.disabled = false;
+  btn.textContent = '🔄 Thử lại';
+}
+
+function decodeJWT(token) {
+  try {
+    return JSON.parse(atob(token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+  } catch { return null; }
+}
+
+function copyToken() {
+  if (!currentToken) return;
+  navigator.clipboard.writeText(currentToken).then(() => {
+    document.getElementById('copy-hint').textContent = '✓ Đã copy!';
+    setTimeout(() => {
+      document.getElementById('copy-hint').textContent = 'Click vào token để copy';
+    }, 2000);
+  });
+}
+
+// Enter key submits
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !document.getElementById('btn').disabled) getToken();
+});
+</script>
+</body>
+</html>

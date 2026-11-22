@@ -31,5 +31,12 @@ desktop.ini
 ~$*
 ~*
 *.tmp
+*.docx
+
+# Temporary files & logs
+ket_qua_log.txt
+scratch/
+avatar.jpg
+
 
 

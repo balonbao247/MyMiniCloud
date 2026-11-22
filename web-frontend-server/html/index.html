@@ -28,7 +28,8 @@
         <ul class="nav-links">
             <li><a href="/" class="active">Portal</a></li>
             <li><a href="/blog/">Blog</a></li>
-            <li><a href="/student/">Student API</a></li>
+            <li><a href="/students.html">Sinh Viên (UI)</a></li>
+            <li><a href="/student/">Student (JSON)</a></li>
             <li><button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện">☀️</button></li>
         </ul>
     </nav>
@@ -57,10 +58,20 @@
                 <p>3 bài viết về điện toán đám mây, Docker & du lịch với giao diện dark glass hiện đại.</p>
                 <span class="go">Mở Blog →</span>
             </a>
-            <a href="/student/" class="svc-card tilt reveal d1" style="--k:#10b981">
-                <div class="ic">🎓</div><h3>Student REST API</h3>
-                <p>Danh sách 5 sinh viên dạng JSON, xử lý bởi Flask Backend qua Gateway.</p>
-                <span class="go">Gọi /student/ →</span>
+            <a href="/students.html" class="svc-card tilt reveal d1" style="--k:#10b981">
+                <div class="ic">🎓</div><h3>Quản Lý Sinh Viên (MariaDB)</h3>
+                <p>Giao diện CRUD đầy đủ (Thêm, Xóa, Sửa) kết nối cơ sở dữ liệu MariaDB 11 qua Gateway.</p>
+                <span class="go">Mở Danh Sách Sinh Viên →</span>
+            </a>
+            <a href="/phpmyadmin/" target="_blank" class="svc-card tilt reveal d2" style="--k:#3b82f6">
+                <div class="ic">🗄️</div><h3>phpMyAdmin UI</h3>
+                <p>Giao diện trực quan quản trị cơ sở dữ liệu MariaDB, chạy truy vấn SQL và quản lý bảng.</p>
+                <span class="go">Mở phpMyAdmin →</span>
+            </a>
+            <a href="/token-manager.html" class="svc-card tilt reveal d3" style="--k:#ec4899">
+                <div class="ic">🔐</div><h3>Keycloak Token Test</h3>
+                <p>Giao diện kiểm thử xác thực, test mật khẩu Keycloak và lấy mã JWT Access Token.</p>
+                <span class="go">Mở Token Manager →</span>
             </a>
             <a href="/api/hello" class="svc-card tilt reveal d2" style="--k:#a855f7">
                 <div class="ic">⚡</div><h3>Backend Core API</h3>

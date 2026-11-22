@@ -132,6 +132,20 @@ services:
       - cloud-net
     restart: unless-stopped
 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: relational-database-server
+      PMA_PORT: 3306
+      PMA_ABSOLUTE_URI: "http://13.251.88.65:8088/phpmyadmin/"
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - cloud-net
+    depends_on:
+      - relational-database-server
+
   api-gateway-proxy-server:
     image: nginx:stable
     container_name: api-gateway-proxy-server
